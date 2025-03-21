@@ -1,0 +1,108 @@
+<programa> ::= <titulo> <inicio> <comando> "\n" <RES> "\n" <fim>
+
+<titulo> ::= "PROGRAMA \"" <ident> "\":" "\n"
+<inicio> ::= "INICIO\n"
+<fim> ::= "FIM"
+
+<RES> ::= "RES" <espaco> "=" <espaco> <expressao>
+
+<comando> ::= <atribuicao>
+            | <comando> "\n" <comando>
+
+<atribuicao> ::= <espaco> <ident> <espaco> "=" <espaco> <expressao>
+
+<expressao> ::= <expressao1> ( <espaco> <operador_soma> <espaco> <expressao1> )*
+<expressao1> ::= <expressao2> ( <espaco> <operador_mult> <espaco> <expressao2> )*
+<expressao2> ::= <numero> | <ident> | "(" <espaco> <expressao> <espaco> ")"
+
+<operador_soma> ::= "+" | "-"
+<operador_mult> ::= "*" | "/"
+
+<espaco> ::= (" " | "\t")*
+
+<ident> ::= ([a-z] | [A-Z])+
+
+<numero> ::= <positivo> | <negativo>
+<positivo> ::= ("0" | [1-9] [0-9]*) ("," [0-9]+)? <cientifico>?
+<negativo> ::= "-" <positivo>
+<cientifico> ::= "e" "-"? [1-9] [0-9]*
+
+
+
+#--------------------------------------------------------------------Explicação------------------------------------------------------------#
+
+
+<programa> ::= <titulo> <inicio> <comando> "\n" <fim> 
+
+    - o "<programa>" começa com um "<titulo>"
+    - seguido de um marcador de "<inicio>" 
+    - depois vem um "<comando>" e termina com o marcador "<final>"
+
+<titulo> ::= "PROGRAMA \"" <ident> "\":" "\n" 
+
+    - a palavra PROGRAMA que seria o titulo seguida pelo nome do programa "<ident>"
+    - o nome deve estar entre aspas duplas (\")
+    - depois dois pontos no final ( : )
+    - depos quebra a linha "\n" indicando o final do titulo
+
+<inicio> ::= "COMECO\n"
+<fim> ::= "TERMINO" "\n"
+
+    - definição das palavras chaves para marcar o inicio e o fim do programa
+
+<comando> ::= <atribuicao>
+            | <comando> "\n" <comando>
+
+    - define os comandos permitidos no programa : pode ser uma atribuição "<atribuicao>" ou pode ser vários comandos "<comandos>" separdos por quebras de linha "\n"
+
+<atribuicao> ::= <espaco> <ident> <espaco> "=" <espaco> <expressao>
+
+- define como atribuir um valor a uma variável:
+
+    - espaços opcionais "<espaco>"
+    - nome da variável "<ident>"
+    - símbolo de igual "="
+    - expressão matemática ou número "<expressao>"
+
+<expressao> ::= <termo> ( <espaco> <operador_soma> <espaco> <termo> )*
+
+- define expressões matemáticas básicas:
+
+    - um termo inicial "<termo>"
+    - pode ter vários termos conectados por operadores de soma/subtração "<operador_soma>"
+
+<termo> ::= <fator> ( <espaco> <operador_mult> <espaco> <fator> )*
+
+- define termos que podem incluir multiplicações e divisões:
+
+    - um fator inicial "<fator>"
+    - pode ter mais fatores conectados por operadores de multiplicação e de divisão "<operador_mult>"
+
+<fator> ::= <numero> | <ident> | "(" <espaco> <expressao> <espaco> ")"
+
+- define os elementos mais básicos de uma expressão:
+
+    - um número "<numero>"
+    - um identificador (variável) "<ident>"
+    - uma expressão entre parênteses para garantir precedência matemática
+
+<operador_soma> ::= "+" | "-"
+<operador_mult> ::= "*" | "/"
+
+- define os operadores matemáticos:
+
+    - soma e subtração: + e -
+    - multiplicação e divisão: * e /
+
+<espaco> ::= (" " | "\t")*
+
+- Permite espaços em branco e tabulações antes e depois dos símbolos.
+
+<numero> ::= [0-9]+
+
+    - define números como um ou mais dígitos (0-9)
+    
+
+<ident> ::= ([a-z] | [A-Z])+
+
+    - define variáveis como letras maiúsculas ou minúsculas
