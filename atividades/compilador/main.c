@@ -29,4 +29,3 @@ int main(int argc, char *argv[]) {
     printf("Arquivo %s gerado com sucesso.\n", arquivo_saida);
     return 0;
 }
-

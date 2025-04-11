@@ -1,4 +1,7 @@
 #include "neander.h"
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 void executarNeander(const char *filename) {
     FILE *file = fopen(filename, "rb");

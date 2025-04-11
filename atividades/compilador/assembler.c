@@ -85,13 +85,13 @@ void firstPass(FILE *file) {
             addr += 2;
             programSize++;
         } else {
-            // ou é instrucao, ou rotulo puro
+            //ou é instrucao, ou rotulo puro
             if (strchr(label, ' ') == NULL) {
-                // rótulo puro
+                //rótulo puro
                 strcpy(labelTable[labelCount].label, label);
                 labelTable[labelCount++].address = addr;
             } else {
-                // so instrucao
+                //so instrucao
                 sscanf(label, "%s %s", program[programSize].instr, program[programSize].arg);
                 addr += 2;
                 programSize++;

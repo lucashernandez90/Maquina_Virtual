@@ -8,6 +8,7 @@ O repositório contém as seguintes pastas e arquivos:
 
 - `neander/` - Contém o código do simulador Neander.
 - `lexer/` - Contém o código do analisador léxico (lexer).
+- `compilador/` - Contém o código do compilador que traduz programas `.lpn` para `.asm`.
 
 ## Módulo Executor (Neander)
 
@@ -52,6 +53,59 @@ Este módulo implementa um simulador de código Neander. Siga os passos abaixo p
     ```bash
     ./lexer Entrada.txt
     ```
+
+## Módulo Compilador
+
+Este módulo implementa um compilador simples que traduz um programa escrito em linguagem `.lpn` para `.asm`, depois monta para `.bin` e executa o binário na Máquina Neander.
+
+### Componentes
+
+- `main.c`: ponto de entrada do compilador.
+- `parser.c/.h`: interpreta comandos do programa `.lpn`.
+- `gerador_asm.c/.h`: gera o `.asm` a partir do parse.
+- `assembler.c`: transforma `.asm` em `.bin`.
+- `executor.c`: executa o binário na VM.
+
+### Fluxo de Compilação
+
+```bash
+arquivo.lpn → (parser + gerador_asm) → arquivo.asm → (assembler) → arquivo.bin → (neander) → execução
+```
+### Rodar manualmente os arquivos
+
+- Primeiro execute `main.c` , `parser.c` , `executor.c` e  `assembler.c` para gerar os executaveis do programa
+
+```bash
+gcc main.c parser.c gerador_asm.c -o compilador
+gcc assembler.c -o assembler
+gcc executor.c neander.c -o executor
+```
+
+- Depois de executar esses comandos gere os arquivos `.asm` , `.bin` e depos vai executar o VM
+
+```bash
+./compilador exemplo.lpn      
+./assembler exemplo.asm       
+./executor exemplo.bin        
+```
+
+### Exemplo de `.lpn`
+
+```bash
+LDA 10
+ADD 11
+STA 12
+HLT
+```
+
+### Rodar com o Makefile
+
+- No terminal apenas tem que digitar `make`, para poder rodar o código.
+
+- E se quiser limpar os arquivos que forem gerados digite `make clean`
+
+
+⚠️ **No momento só consigo rodar a operação de soma entre os valores**
 
 # Código BNF Explicação
 

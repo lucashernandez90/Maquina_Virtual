@@ -1,0 +1,4 @@
+LDA 0A
+ADD 0B
+STA 0C
+HLT 00
