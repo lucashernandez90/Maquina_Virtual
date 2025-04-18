@@ -64,6 +64,10 @@ void executarNeander(const char *filename) {
             pc++;
             ac += bytes[bytes[pc]];
             break;
+        case SUB:
+            pc++;
+            ac -= bytes[bytes[pc]];
+            break;
         case NOT:
             ac = ~ac;
             break;

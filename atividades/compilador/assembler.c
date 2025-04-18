@@ -27,6 +27,7 @@ int getOpcode(const char *instr) {
     if (strcmp(instr, "STA") == 0) return 0x10;
     if (strcmp(instr, "LDA") == 0) return 0x20;
     if (strcmp(instr, "ADD") == 0) return 0x30;
+    if (strcmp(instr, "SUB") == 0) return 0x40;
     if (strcmp(instr, "NOT") == 0) return 0x60;
     if (strcmp(instr, "JMP") == 0) return 0x80;
     if (strcmp(instr, "JN")  == 0) return 0x90;

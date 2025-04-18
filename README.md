@@ -92,10 +92,14 @@ gcc executor.c neander.c -o executor
 ### Exemplo de `.lpn`
 
 ```bash
-LDA 10
-ADD 11
-STA 12
-HLT
+PROGRAMA "teste_simples":
+INICIO
+A = 5     
+B = 3     
+C = A * B 
+D = C / B 
+RES = (A * B + B) / C
+FIM
 ```
 
 ### Rodar com o Makefile
@@ -104,8 +108,6 @@ HLT
 
 - E se quiser limpar os arquivos que forem gerados digite `make clean`
 
-
-⚠️ **No momento só consigo rodar a operação de soma entre os valores**
 
 # Código BNF Explicação
 

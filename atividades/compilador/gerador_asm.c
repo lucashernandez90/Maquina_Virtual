@@ -8,7 +8,14 @@ void gerar_codigo_asm(Programa *programa, const char *arquivo_saida) {
 
     for (int i = 0; i < programa->quantidade; i++) {
         Instrucao instr = programa->instrucoes[i];
-        fprintf(arquivo, "%s %02X\n", instr.operacao, instr.argumento);
+        
+        // Verifica se é uma instrução HLT, que não precisa de argumento
+        if (strcmp(instr.operacao, "HLT") == 0) {
+            fprintf(arquivo, "%s\n", instr.operacao);
+        } else {
+            // Formata o argumento em hexadecimal maiúsculo
+            fprintf(arquivo, "%s %02X\n", instr.operacao, instr.argumento);
+        }
     }
 
     fclose(arquivo);
